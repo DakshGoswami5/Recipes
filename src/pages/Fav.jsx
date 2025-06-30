@@ -3,18 +3,17 @@ import { recipecontext } from "../context/RecipeContext";
 import RecipeCard from "../components/RecipeCard";
 
 
-const Recipes = () => {
+const Fav = () => {
+    const favourite = JSON.parse(localStorage.getItem("fav") || []);
 
-  const {data} = useContext(recipecontext);
-
-  const renderrecipes = data.map((recipe) => (
+  const renderrecipes = favourite.map((recipe) => (
     <RecipeCard key={recipe.id} recipe={recipe} />
   ));
   return (
     <div className="flex flex-wrap">
-      {data.length>0 ? renderrecipes : "No recipe found"}
+      {favourite.length>0 ? renderrecipes : "No favourite found"}
     </div>
   )
 }
 
-export default Recipes
+export default Fav
